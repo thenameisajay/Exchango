@@ -93,7 +93,7 @@ export default function CurrencyComponent() {
     };
 
     return (
-        <div className="flex h-dvh items-center justify-center sm:w-96">
+        <div className="flex items-center justify-center sm:w-96">
             <Card className="w-80 sm:w-full">
                 <CardHeader>
                     <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 p-1 sm:h-28 sm:w-28">
