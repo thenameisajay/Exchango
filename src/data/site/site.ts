@@ -1,13 +1,19 @@
 export const siteConfig = {
     title: "Exchango",
-    url: "https://aurora-sight.vercel.app/",
+    url: "https://xec.vercel.app/",
     description: `
-    A simple currency exchange rate app built with Next.js and TypeScript.
+    A simple, easy to build, currency converter using just useStates and useEffects to handle API calls.
     `,
     links: {
-        github: "https://github.com/thenameisajay/Aurora-Sight-2.0",
+        github: "https://github.com/thenameisajay/Exchango",
     },
-    keywords: ["next.js", "typescript", "aurora", "real-time"],
+    keywords: [
+        "next.js",
+        "typescript",
+        "currency",
+        "real-time",
+        "currency-converter",
+    ],
     creator: "thenameisajay - https://github.com/thenameisajay",
 };
 
