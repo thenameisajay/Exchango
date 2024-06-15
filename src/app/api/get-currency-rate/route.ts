@@ -4,11 +4,13 @@ import { NextResponse } from "next/server";
 
 import axios from "axios";
 
-export async function getCurrencyRate(req: Request) {
+export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
 
         const API_URL = process.env.API_URL;
+
+        console.log("API_URL", API_URL);
 
         if (process.env.API_URL === undefined) {
             return NextResponse.json(
@@ -28,6 +30,8 @@ export async function getCurrencyRate(req: Request) {
         }
 
         const TARTGETED_URL = `${API_URL}&base_currency=${currencyOne}&currencies=${currencyTwo}`;
+
+        console.log("TARTGETED_URL", TARTGETED_URL);
 
         const response = await axios.get(TARTGETED_URL);
 
@@ -52,3 +56,5 @@ export async function getCurrencyRate(req: Request) {
         );
     }
 }
+
+// API Route call URL is : http://localhost:3000/api/get-currency-rate?currencyOne=<currencyOne>&currencyTwo=<currencyTwo>
