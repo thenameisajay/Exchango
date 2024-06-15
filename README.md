@@ -1,6 +1,6 @@
 # Exchango
 
-Exchango is a simple and user-friendly currency converter that allows you to convert between different currencies. Built with a minimalistic design, it aims to be easy to use and understand, while also being a challenge to create in a short amount of time.
+Exchango is a simple and user-friendly currency converter that allows you to convert between different currencies. Built with a minimalistic design, it aims to be easy to use and understand, while also being a challenge to create in a short amount of time (Project Duration : A Saturday).
 
 ## Features
 

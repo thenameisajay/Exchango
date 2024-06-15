@@ -12,7 +12,7 @@ export async function GET(req: Request) {
 
         console.log("API_URL", API_URL);
 
-        if (process.env.API_URL === undefined) {
+        if (API_URL === undefined) {
             return NextResponse.json(
                 { error: "API_URL is not defined" },
                 { status: 500 },
