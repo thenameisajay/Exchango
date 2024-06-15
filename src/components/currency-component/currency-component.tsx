@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Balancer from "react-wrap-balancer";
 
 import Image from "next/image";
 
@@ -225,22 +224,21 @@ export default function CurrencyComponent() {
                     </div>
 
                     <div className="text-balance">
-                        <Balancer>
-                            {inputAmount != 0 &&
-                                !isSameCurrency &&
-                                error === "" && (
-                                    <Alert>
-                                        <AlertDescription>
-                                            {inputAmount} {currencyOne} equals
-                                        </AlertDescription>
-                                        <AlertTitle className="text-3xl">
-                                            {totalAmount}
-                                            <span> </span>
-                                            {currencyTwo}
-                                        </AlertTitle>
-                                    </Alert>
-                                )}
-                        </Balancer>
+                        {inputAmount != 0 &&
+                            !isSameCurrency &&
+                            error === "" && (
+                                <Alert>
+                                    <AlertDescription>
+                                        {inputAmount} {currencyOne} equals
+                                    </AlertDescription>
+                                    <AlertTitle className="text-3xl">
+                                        {totalAmount}
+                                        <span> </span>
+                                        {currencyTwo}
+                                    </AlertTitle>
+                                </Alert>
+                            )}
+
                         {error !== "" && (
                             <Alert>
                                 <AlertTitle className="text-3xl">
