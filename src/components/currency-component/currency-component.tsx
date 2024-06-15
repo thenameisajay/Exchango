@@ -38,24 +38,19 @@ export default function CurrencyComponent() {
 
         const getCurrencyRate = async () => {
             try {
-                //?Bug Fix : Check if countryOne and countryTwo exist in supportedCurrencies if not return , don't even make the API call until both currencies are valid
-                console.log("currencyOne", currencyOne);
-                console.log("currencyTwo", currencyTwo);
+                // Validate currencies
                 const areCountriesValid = await Promise.all([
                     getCountryValidation(currencyOne),
                     getCountryValidation(currencyTwo),
                 ]);
 
-                console.log("areCountriesValid", areCountriesValid);
-
                 if (!areCountriesValid[0] || !areCountriesValid[1]) {
                     return;
                 }
 
-                console.log("CurrencyOne and CurrencyTwo are valid");
-
                 const response = await axios.get(
                     `/api/get-currency-rate?currencyOne=${currencyOne}&currencyTwo=${currencyTwo}`,
+                    { signal: controller.signal },
                 );
 
                 const data = response.data;
@@ -64,8 +59,13 @@ export default function CurrencyComponent() {
                     setCurrencyRate(Number(currency[0]));
                 }
             } catch (error) {
-                console.log(error);
-                setError(error as unknown as string);
+                // Check if the error is due to the request being aborted
+                if (axios.isCancel(error)) {
+                    console.log("Request canceled:", error.message);
+                } else {
+                    console.error(error);
+                    setError(error as unknown as string);
+                }
             }
         };
 
