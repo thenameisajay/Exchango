@@ -20,6 +20,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { supportedCurrencies } from "@/data/countries/currencyData";
+import { getCountryValidation } from "@/utils/helpers/getCountryValidation";
 
 dayjs.extend(relativeTime);
 
@@ -37,6 +38,22 @@ export default function CurrencyComponent() {
 
         const getCurrencyRate = async () => {
             try {
+                //?Bug Fix : Check if countryOne and countryTwo exist in supportedCurrencies if not return , don't even make the API call until both currencies are valid
+                console.log("currencyOne", currencyOne);
+                console.log("currencyTwo", currencyTwo);
+                const areCountriesValid = await Promise.all([
+                    getCountryValidation(currencyOne),
+                    getCountryValidation(currencyTwo),
+                ]);
+
+                console.log("areCountriesValid", areCountriesValid);
+
+                if (!areCountriesValid[0] || !areCountriesValid[1]) {
+                    return;
+                }
+
+                console.log("CurrencyOne and CurrencyTwo are valid");
+
                 const response = await axios.get(
                     `/api/get-currency-rate?currencyOne=${currencyOne}&currencyTwo=${currencyTwo}`,
                 );

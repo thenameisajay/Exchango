@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getLocalisedTime } from "@/utils/helpers/getLocalisedTime";
+import { getLocalisedYear } from "@/utils/helpers/getLocalisedYear";
 
 const githubLink = "https://github.com/thenameisajay";
 
@@ -12,7 +12,7 @@ export default function Footer() {
                     <span className="text-base">&copy;</span>{" "}
                     <span className="font-semibold">
                         {" "}
-                        {getLocalisedTime(new Date())}
+                        {getLocalisedYear(new Date())}
                     </span>
                     ,{" "}
                     <a
