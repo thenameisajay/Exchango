@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Balancer from "react-wrap-balancer";
 
 import Image from "next/image";
 
@@ -30,6 +31,7 @@ export default function CurrencyComponent() {
     const [inputAmount, setInputAmount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
     const [lastUpdated, setLastUpdated] = useState(new Date());
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const controller = new AbortController();
@@ -47,6 +49,7 @@ export default function CurrencyComponent() {
                 }
             } catch (error) {
                 console.log(error);
+                setError(error as unknown as string);
             }
         };
 
@@ -220,16 +223,28 @@ export default function CurrencyComponent() {
                             </p>
                         )}
                     </div>
-                    <div>
-                        {inputAmount != 0 && !isSameCurrency && (
+
+                    <div className="text-balance">
+                        <Balancer>
+                            {inputAmount != 0 &&
+                                !isSameCurrency &&
+                                error === "" && (
+                                    <Alert>
+                                        <AlertDescription>
+                                            {inputAmount} {currencyOne} equals
+                                        </AlertDescription>
+                                        <AlertTitle className="text-3xl">
+                                            {totalAmount}
+                                            <span> </span>
+                                            {currencyTwo}
+                                        </AlertTitle>
+                                    </Alert>
+                                )}
+                        </Balancer>
+                        {error !== "" && (
                             <Alert>
-                                <AlertDescription>
-                                    {inputAmount} {currencyOne} equals
-                                </AlertDescription>
                                 <AlertTitle className="text-3xl">
-                                    {totalAmount}
-                                    <span> </span>
-                                    {currencyTwo}
+                                    {error}
                                 </AlertTitle>
                             </Alert>
                         )}
